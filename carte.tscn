@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://b50qbluuuhcvi"]
+
+[ext_resource type="Script" path="res://carte.gd" id="1_cq2qh"]
+
+[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_axsd7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yqv7h"]
+size = Vector3(2.03271, 0.0767822, 2.05994)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_s25ve"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_6typk"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(0.309262, 0, 0, 0, 0.515437, 0, 0, 0, 0.206175, 0, 0, 0)
+script = ExtResource("1_cq2qh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaceholderMesh_axsd7")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+transform = Transform3D(0.999974, 0, 0, 0, 0.999968, 0, 0, 0, 1, 0.00415134, -0.00177111, 0.00946044)
+shape = SubResource("BoxShape3D_yqv7h")
+
+[node name="Face_avant" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_s25ve")
+
+[node name="Label3D" type="Label3D" parent="MeshInstance3D/Face_avant"]
+transform = Transform3D(0.999999, -1.06581e-14, 0, 0, -4.37114e-08, 0.999999, 3.55271e-15, -1, -4.37113e-08, 2.62083e-08, 0.0339783, 0.599576)
+text = "test"
+autowrap_mode = 2
+width = 400.0
+
+[node name="Face_arriere" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1.985, 0, 0, 0, -8.67671e-08, -1.985, 0, 1.985, -8.67671e-08, 0, -0.002, 0)
+mesh = SubResource("QuadMesh_6typk")
+
+[connection signal="mouse_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_mouse_exited"]

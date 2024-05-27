@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://w2jep2cgvvcm"]
+
+[ext_resource type="PackedScene" uid="uid://cc4oevmh82pj6" path="res://piece.tscn" id="1_1mn64"]
+[ext_resource type="Script" path="res://main.gd" id="1_k6nrg"]
+[ext_resource type="PackedScene" uid="uid://8t4efqajpwnf" path="res://deck.tscn" id="2_v0dgx"]
+[ext_resource type="PackedScene" uid="uid://b50qbluuuhcvi" path="res://carte.tscn" id="3_t08be"]
+
+[sub_resource type="SystemFont" id="SystemFont_bsnr7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3dysk"]
+font = SubResource("SystemFont_bsnr7")
+font_size = 50
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Node" type="Node"]
+script = ExtResource("1_k6nrg")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70137, 0.712798, 0, -0.712798, 0.70137, 0, 3.62426, 3.33444)
+fov = 47.9
+
+[node name="piece" parent="." instance=ExtResource("1_1mn64")]
+script = null
+
+[node name="deck" parent="." instance=ExtResource("2_v0dgx")]
+transform = Transform3D(1, 0, 0, 0, 0.725579, -0.688139, 0, 0.688139, 0.725579, 0, 1.22941, 1.72932)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.557731, 0.830022, 0, -0.830022, 0.557731, 0, 4.10288, 0)
+
+[node name="carte" parent="." instance=ExtResource("3_t08be")]
+transform = Transform3D(-2.05444e-08, 0, 0.313, 0, 0.783, 0, -0.47, 0, -1.36817e-08, 0.00482917, 0.845281, -0.100857)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_3dysk")
