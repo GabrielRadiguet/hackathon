@@ -4,14 +4,16 @@ extends Node
 @onready var carte = $carte
 @onready var jsone = FileAccess.open("res://assets/cartes/info.json", FileAccess.READ)
 @onready var score_label = $CanvasLayer/Control/Label
+@onready var pop_fin = $CanvasLayer/Control/Popup
 var score = 10
 
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
+	Variables.cartes = []
 	score_label.text = "Score: " + str(score)
 	jsone = JSON.parse_string(jsone.get_as_text())
-
+	
 	var ep = {
 		"Antiquite" :{
 			"Politique" : 0,
@@ -50,17 +52,16 @@ func _ready():
 		print(jsone[str(i+1)])
 		ep[jsone[str(i+1)]["periode"]][jsone[str(i+1)]["theme"]] += 1
 	print(ep)
-	
-	carte.set_card_id(randi() % len(jsone)+1)
-
 	for i in range(5):
 		var temp = true
 		var new_id = 0
 		while temp :
 			new_id = (randi() % len(jsone)+1)
-			if not (Variables.cartes.has([new_id])) and new_id != carte.ID :
+			if not (Variables.cartes.has([new_id])):
 				temp = false
+				
 		deck.add_card(new_id)
+	choose()
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -99,7 +100,11 @@ func valide(id) :
 	return false
 
 func fin():
-	
+	var pop_up = $CanvasLayer/Control/Popup/RichTextLabel
+	pop_up.text = "félicitation !\n Votre score est : " + str(score)
+	pop_fin.visible = true
+	await get_tree().create_timer(5).timeout
+	get_tree().change_scene_to_file("res://title.tscn")
 	pass
 
 func choose():
@@ -140,3 +145,7 @@ func choose():
 		
 		var choice = carte_pos[randi() % carte_pos.size()]
 		carte.set_card_id(choice)
+
+
+func _on_quit_button_pressed():
+	get_tree().change_scene_to_file("res://title.tscn")

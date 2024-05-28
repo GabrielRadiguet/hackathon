@@ -1,0 +1,120 @@
+[gd_scene load_steps=5 format=3 uid="uid://vmfeyw2f5fvs"]
+
+[ext_resource type="Script" path="res://title.gd" id="1_guhcs"]
+[ext_resource type="Texture2D" uid="uid://c6cvvuqbwtei1" path="res://assets/fond.jpg" id="2_c2exv"]
+[ext_resource type="AudioStream" uid="uid://bry5cjvt6srmp" path="res://assets/balade.mp3" id="3_br30e"]
+[ext_resource type="FontFile" uid="uid://gnkm2rtqf825" path="res://assets/papyrus.ttf" id="3_hml8p"]
+
+[node name="title_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_guhcs")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+scale = Vector2(0.745, 0.745)
+texture = ExtResource("2_c2exv")
+
+[node name="niveau_1" type="Button" parent="."]
+layout_mode = 0
+offset_left = 610.0
+offset_top = 280.0
+offset_right = 790.0
+offset_bottom = 350.0
+theme_override_font_sizes/font_size = 30
+text = "Niveau 1"
+
+[node name="niveau_2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 610.0
+offset_top = 390.0
+offset_right = 790.0
+offset_bottom = 460.0
+theme_override_font_sizes/font_size = 30
+text = "Niveau 2
+"
+
+[node name="tuto" type="Button" parent="."]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 500.0
+offset_right = 830.0
+offset_bottom = 570.0
+theme_override_font_sizes/font_size = 30
+text = "Comment jouer "
+
+[node name="credit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 610.0
+offset_top = 610.0
+offset_right = 790.0
+offset_bottom = 680.0
+theme_override_font_sizes/font_size = 30
+text = "Credit
+"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 4.0
+offset_right = 1100.0
+offset_bottom = 204.0
+theme_override_fonts/normal_font = ExtResource("3_hml8p")
+theme_override_font_sizes/normal_font_size = 100
+text = "*inserer titre*"
+
+[node name="Popup2" type="Popup" parent="."]
+position = Vector2i(350, 100)
+size = Vector2i(700, 600)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup2"]
+offset_right = 700.0
+offset_bottom = 600.0
+theme_override_fonts/normal_font = ExtResource("3_hml8p")
+theme_override_font_sizes/normal_font_size = 41
+bbcode_enabled = true
+text = "Credit :
+recherche : Ewan Siong
+Programmation : Gabriel Radiguet
+Modelisation : Gabriel Radiguet
+Image : Gabriel Radiguet (sauf le fond)
+Musique : A music player - Balade (youtube)
+                   Eric Satie - Gymnopédies
+"
+
+[node name="Popup" type="Popup" parent="."]
+position = Vector2i(350, 100)
+size = Vector2i(700, 600)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup"]
+offset_right = 700.0
+offset_bottom = 600.0
+theme_override_fonts/normal_font = ExtResource("3_hml8p")
+theme_override_font_sizes/normal_font_size = 41
+bbcode_enabled = true
+text = "Manuel d’utilisation SionGradiguet
+Règles du jeu :
+Le joueur a dans sa main 5 cartes choisit aléatoirement parmi 50 autres,toutes liées à :
+Une période (Antiquité ; Moyen Âge ; Moderne ; Contemporain)
+Un thème (Politique ; Politique en France ; Économique et social ; Culturel ;Scientifique ; Religieux onflit)
+Le joueur a en face de lui une carte, elle aussi choisit aléatoirement.
+L’objectif est de ne plus avoir de cartes dans sa main en maintenant lescore le plus haut qui est de 10 points. Pour y parvenir, le joueur doitchoisir parmi l’une de ses cartes celle qui correspond à la même périodeou au même thème que la carte en face de lui.
+Si le choix est correct, la carte que le joueur a choisi est retirée de sa mainet il e perd ucun oint.
+Si le choix est incorrect, la carte que le joueur a choisi retourne dans samain, une nouvelle carte aléatoire lui est donnée, et il perd 2 points sur sonscore.
+Une partie gagnée sans erreur rapporte 10 points.
+Une partie gagnée avec cinq erreurs ou plus, ne rapporte aucun point. Lejoueur peut enchaîner plusieurs parties et ainsi cumuler le nombre depoints gagnés.
+Le jeu propose des niveaux de difficultés différents :
+Niveau 1 : la carte proposée par l'ordinateur peut coïncider avec plusieurscartes du joueur
+Niveau 2 : la carte proposée par l'ordinateur coïncide avec le moins decartes ossibles du joueur, ce qui correspond à des artes ue l'onqualifiera de rares."
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_br30e")
+volume_db = -25.0
+autoplay = true
+
+[connection signal="pressed" from="niveau_1" to="." method="_on_niveau_1_pressed"]
+[connection signal="pressed" from="niveau_2" to="." method="_on_niveau_2_pressed"]
+[connection signal="pressed" from="tuto" to="." method="_on_tuto_pressed"]
+[connection signal="pressed" from="credit" to="." method="_on_credit_pressed"]

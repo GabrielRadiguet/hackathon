@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://cc4oevmh82pj6"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_b3c1p"]
-[ext_resource type="PackedScene" uid="uid://wncu6rucej22" path="res://3d assets/table.blend" id="1_k1iy0"]
-[ext_resource type="PackedScene" uid="uid://cuhr784lswkeo" path="res://3d assets/piece.blend" id="2_2suub"]
+[ext_resource type="PackedScene" uid="uid://dra8l7bqrp3i1" path="res://3d assets/table.glb" id="1_k1iy0"]
+[ext_resource type="PackedScene" uid="uid://rj56r4cltudi" path="res://3d assets/piece.glb" id="2_2suub"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_b3c1p")
 
 [node name="table" parent="." instance=ExtResource("1_k1iy0")]
-transform = Transform3D(0.705, 0, 0, 0, 0.705, 0, 0, 0, 0.705, 0, 0, 0)
+transform = Transform3D(0.36, 0, 0, 0, -0.36, 3.14722e-08, 0, -3.14722e-08, -0.36, 0, 0.320363, 0)
 
 [node name="piece" parent="." instance=ExtResource("2_2suub")]
-transform = Transform3D(1.435, 0, 0, 0, 1.435, 0, 0, 0, 1.435, 0, -1.4496, -0.0478175)
+transform = Transform3D(1.435, 0, 0, 0, 1.435, 0, 0, 0, 1.435, 0, -0.33461, -0.0478175)

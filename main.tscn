@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://w2jep2cgvvcm"]
+[gd_scene load_steps=10 format=3 uid="uid://w2jep2cgvvcm"]
 
 [ext_resource type="PackedScene" uid="uid://cc4oevmh82pj6" path="res://piece.tscn" id="1_1mn64"]
 [ext_resource type="Script" path="res://main.gd" id="1_k6nrg"]
 [ext_resource type="PackedScene" uid="uid://8t4efqajpwnf" path="res://deck.tscn" id="2_v0dgx"]
 [ext_resource type="PackedScene" uid="uid://b50qbluuuhcvi" path="res://carte.tscn" id="3_t08be"]
+[ext_resource type="Texture2D" uid="uid://c1ncd8qjxnm25" path="res://assets/quit.svg" id="5_3tg76"]
+[ext_resource type="AudioStream" uid="uid://hdnkp1ok1trb" path="res://assets/Gymnopédie.mp3" id="6_5ejv5"]
 
 [sub_resource type="SystemFont" id="SystemFont_bsnr7"]
 
@@ -13,6 +15,11 @@ font_size = 50
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="SystemFont" id="SystemFont_q51cr"]
+font_names = PackedStringArray("Papyrus", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
+font_weight = 900
+msdf_size = 318
+
 [node name="Node" type="Node"]
 script = ExtResource("1_k6nrg")
 
@@ -21,6 +28,7 @@ transform = Transform3D(1, 0, 0, 0, 0.70137, 0.712798, 0, -0.712798, 0.70137, 0,
 fov = 47.9
 
 [node name="piece" parent="." instance=ExtResource("1_1mn64")]
+transform = Transform3D(3.03953, 0, 0, 0, 3.03953, 0, 0, 0, 3.03953, 0, -0.255, 0.0771318)
 script = null
 
 [node name="deck" parent="." instance=ExtResource("2_v0dgx")]
@@ -45,3 +53,34 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 label_settings = SubResource("LabelSettings_3dysk")
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 1350.0
+offset_top = 2.0
+offset_right = 1382.0
+offset_bottom = 34.0
+scale = Vector2(1.5, 1.5)
+icon = ExtResource("5_3tg76")
+
+[node name="Popup" type="Popup" parent="CanvasLayer/Control"]
+position = Vector2i(350, 28)
+size = Vector2i(700, 600)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/Popup"]
+offset_right = 700.0
+offset_bottom = 600.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/normal_font = SubResource("SystemFont_q51cr")
+theme_override_font_sizes/normal_font_size = 41
+bbcode_enabled = true
+text = "test
+"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_5ejv5")
+volume_db = -15.0
+autoplay = true
+
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_quit_button_pressed"]
