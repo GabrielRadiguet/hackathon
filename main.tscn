@@ -28,7 +28,7 @@ transform = Transform3D(1, 0, 0, 0, 0.70137, 0.712798, 0, -0.712798, 0.70137, 0,
 fov = 47.9
 
 [node name="piece" parent="." instance=ExtResource("1_1mn64")]
-transform = Transform3D(3.03953, 0, 0, 0, 3.03953, 0, 0, 0, 3.03953, 0, -0.255, 0.0771318)
+transform = Transform3D(3.03953, 0, 0, 0, 3.03953, 0, 0, 0, 3.03953, 0, -0.255, -0.205485)
 script = null
 
 [node name="deck" parent="." instance=ExtResource("2_v0dgx")]
